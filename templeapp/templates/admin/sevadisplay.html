@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>seva Detaisl</title>
+</head>
+<body>
+
+<table>
+	{% for s in sevadetails %} 
+    	<tr>
+    	<td>
+    		{{s.devoteetotalamountdetails}}
+    		{{s.sevaid_id}}    
+    		{{s.createdby_id}}    	
+    	</td>
+    </tr>
+    	{% endfor %}
+
+    	-----------------------------------------------------
+
+    		{% for d in devoteedata %} 
+    	<tr>
+    	<td>
+    		{{d.devoteename}}
+    		{{d.devoteemobilenumber}}    	
+    		{{d.devoteenakshatra}}    	
+    		{{d.devoteegotra}}    	
+    		{{d.devoteerashi}}    	
+    		{{d.devoteesevadate}}    	
+    		{{d.devoteetotalamount}}    	
+    		{{d.dpaymentmode}}    	
+    		{{d.dtransactionno}}    	
+    		{{d.createdby_id}}    	
+    	
+    	</td>
+    </tr>
+    	{% endfor %}
+</table>
+</body>
+</html>

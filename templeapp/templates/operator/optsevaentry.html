@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  {% include "design/head.html" %}
+  <title>Seva Entry</title>
+      <script type="text/javascript">
+        
+        function calculateamt(amt)
+        {
+            totalamt=parseInt(document.getElementById("dtotalamount").value);
+            totalamt+=parseInt(amt);
+            document.getElementById('totalamount').value=document.getElementById("dtotalamount").value=totalamt;
+
+    }
+
+
+
+
+    $(function(){
+    var dtToday = new Date();
+
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
+
+    var minDate= year + '-' + month + '-' + day;
+
+    $('#txtDate').attr('min', minDate);
+});
+
+    </script>
+
+</head>
+<body>
+  {% include 'design/operatormid.html' %}
+  	  {% include 'design/msg.html' %}
+      {%if dl == "kn" %}
+  <h2>ಸೇವೆ ಮಾಡಿಸು </h2>
+   {%else%}
+  <h2>Seva Entry</h2>
+
+ {%endif%} 
+<form  id="register" method="post"  autocomplete="off" >
+
+   <table style="width:60%;" align="center" >    
+        <tr>
+            <td>
+                {%if dl == "kn" %}
+                <font color="red">*</font><label for="name"><b>ಪೂರ್ಣ ಹೆಸರು</label>
+                <input autofocus="on" type="text" name="fullname" id="fullname" placeholder="Enter Name In English" required class="form-control"  >
+                {%else%}
+              <font color="red">*</font><label for="name"><b>Full Name In English</label>
+                <input autofocus="on" type="text" name="fullname" id="fullname"   placeholder="Enter Full Name In English" required class="form-control"  >
+                {%endif%} 
+            </td>
+
+            
+            <td>
+                {%if dl == "kn" %}
+                 <font color="red">*</font><label for="Mobile"><b>ಮೊಬೈಲ್ ನಂ.</label>
+                <input type="number" name="Mobile" id="Mobile" class="form-control" placeholder="ಮೊಬೈಲ್ ನಂ" required >
+                {%else%}
+                 <font color="red">*</font><label for="Mobile"><b>Mobile No.</label>
+                <input type="number" name="Mobile" id="Mobile" class="form-control" placeholder="Enter Mobile Number" required >
+                  {%endif%} 
+            </td>
+
+        <td>
+            {%if dl == "kn" %}
+           <font color="red">*</font><label for="rashi"><b>ರಾಶಿ</label>
+            <select name="rashi" id="rashi"  required class="form-select select2-hidden-accessible" data-select2-id="AYear" >
+                {% for r in rashidata %}
+                {%if dl == "kn" %}
+                      <option>{{r.rashi_kn}}</option>
+                    {%else%}
+                      <option>{{r.rashi_en}}</option>
+                    {%endif%} 
+                {% endfor %}
+            </select>
+            {%else%}
+            <font color="red">*</font><label for="rashi"><b>Rashi</label>
+            <select name="rashi" id="rashi"  required class="form-select select2-hidden-accessible" data-select2-id="AYear" >
+                {% for r in rashidata %}
+                {%if dl == "kn" %}
+                      <option>{{r.rashi_kn}}</option>
+                    {%else%}
+                      <option>{{r.rashi_en}}</option>
+                    {%endif%} 
+                {% endfor %}
+            </select>
+            {%endif%} 
+        </td>
+</tr>
+<tr>
+        <td>
+            {%if dl == "kn" %}
+           <font color="red">*</font><label for="nakshatra"><b>ನಕ್ಷತ್ರ</label>
+            <select name="nakshatra" id="nakshatra"  required class="form-select select2-hidden-accessible" data-select2-id="AYear"  aria-hidden="true">
+                {% for r in nakshtradata %}
+                {%if dl == "kn" %}
+                      <option>{{r.nakshatra_kn}}</option>
+                    {%else%}
+                      <option>{{r.nakshatra_en}}</option>
+                    {%endif%} 
+                {% endfor %}
+            </select>
+            {%else%}
+            <font color="red">*</font><label for="nakshatra"><b>Nakshatra</label>
+            <select name="nakshatra" id="nakshatra"  required class="form-select select2-hidden-accessible" data-select2-id="AYear"  aria-hidden="true">
+                {% for r in nakshtradata %}
+                {%if dl == "kn" %}
+                      <option>{{r.nakshatra_kn}}</option>
+                    {%else%}
+                      <option>{{r.nakshatra_en}}</option>
+                    {%endif%} 
+                {% endfor %}
+            </select>
+            {%endif%} 
+        </td>
+        <td>
+             {%if dl == "kn" %}
+           <font color="red">*</font><label for="gotra"><b>ಗೋತ್ರ</label>
+            <select name="gotra" id="gotra"  required class="form-select select2-hidden-accessible" data-select2-id="AYear"  aria-hidden="true">
+            {% for r in gotradata %}  
+                {%if dl == "kn" %}
+                      <option>{{r.gotra_kn}}</option>
+                    {%else%}
+                      <option>{{r.gotra_en}}</option>
+                    {%endif%} 
+                {% endfor %}
+            </select>
+            {%else%}
+           <font color="red">*</font><label for="gotra"><b>Gotra</label>
+            <select name="gotra" id="gotra"  required class="form-select select2-hidden-accessible" data-select2-id="AYear"  aria-hidden="true">
+            {% for r in gotradata %}  
+                {%if dl == "kn" %}
+                      <option>{{r.gotra_kn}}</option>
+                    {%else%}
+                      <option>{{r.gotra_en}}</option>
+                    {%endif%} 
+                {% endfor %}
+            </select>
+             {%endif%} 
+        </td>
+ 
+    	<td>
+            {%if dl == "kn" %}
+    		<font color="red">*</font><label for="sevadate"><b>ಸೇವೆ ದಿನಾಂಕ</label>
+        <input type="date" id="txtDate" name="sevadate" id="sevadate"  required  class="form-control" value="" autocomplete="off">
+        {%else%}
+            <font color="red">*</font><label for="sevadate"><b>Seva Date</label>
+        <input type="date" id="txtDate" name="sevadate" id="sevadate"  required  class="form-control" value="" autocomplete="off">
+     {%endif%} 
+    	</td>
+    </tr>
+
+	<table style="width:60%;" align="center" class="table table-bordered"><br>
+        {%if dl == "kn" %}
+	<center><h4><b>ಸೇವೆ ವಿವರಗಳು</b></h4></center>
+    {%else%}
+    <center><h4><b>SEVA DETAILS</b></h4></center>
+     {%endif%} 
+	    	{% for s in sevadata %} 
+    	<tr>
+    	<td>
+    		<input type="checkbox" name="sevaname{{s.id}}" onchange="calculateamt({{s.amount}})" value="{{s.id}}_{{s.amount}}"> 
+            {%if dl == "kn" %}
+            {{s.sevaname_kn}}
+            {%else%}
+            {{s.sevaname_en}}
+            {%endif%} 
+            <br>
+    	</td>
+    	<td>
+    		{{s.amount}}.00
+    	</td>
+    </tr>
+    	{% endfor %}
+
+    	<table  style="width:60%;" align="center" >
+    		    <tr>
+                    <td>
+                    {%if dl == "kn" %}
+    		    	<center align="left" class="form-control"><font><b>ಒಟ್ಟು ಮೊತ್ತ :</b></font></center>
+                    {%else%}
+                    <center align="left" class="form-control"><font><b>Total Amount :</b></font></center>
+                     {%endif%} 
+    		      </td>
+    		    <td>
+    		    	<input type="text" name="dtotalamount" readonly id="dtotalamount"  class="form-control" value="0" >
+    		    	<div id="totalamount"></div>
+    		    </td>
+   				 </tr>
+    		<tr>
+        <td>
+            {%if dl == "kn" %}
+           <font color="red">*</font><label for="pmode"><b>ಪಾವತಿ ಮೋಡ್</label>
+            <select name="pmode" id="pmode"  required class="form-select select2-hidden-accessible" data-select2-id="AYear"  aria-hidden="true">
+                <option value="">ಪಾವತಿ ಮೋಡ್ ಆಯ್ಕೆಮಾಡಿ</option>
+                <option value="cash">ನಗದು</option>
+                <option value="bank">ಬ್ಯಾಂಕ್</option>
+            </select>
+            {%else%}
+            <font color="red">*</font><label for="pmode"><b>Payment Mode</label>
+            <select name="pmode" id="pmode"  required class="form-select select2-hidden-accessible" data-select2-id="AYear"  aria-hidden="true">
+                <option value="">Select Payment Mode</option>
+                <option value="cash">CASH</option>
+                <option value="bank">BANK</option>
+            </select>
+            {%endif%} 
+        </td>
+        <td>
+            {%if dl == "kn" %}
+    		<font color="red">*</font><label for="tdetails"><b>ವಹಿವಾಟಿನ ವಿವರಗಳು</label>
+        <input type="text" name="tdetails" id="tdetails"  required  class="form-control" placeholder="ವಹಿವಾಟಿನ ವಿವರಗಳು" value="" autocomplete="off">
+        {%else%}
+        <font color="red">*</font><label for="tdetails"><b>Transaction Details</label>
+        <input type="text" name="tdetails" id="tdetails"  required  class="form-control" placeholder="Enter Details" value="" autocomplete="off">
+{%endif%} 
+    	</td>
+      </tr>
+          <tr> 
+            <td align="right" width="50%">
+                <br/>
+            <input type="submit" id="submit" name="submit" value="Add Seva" class="btn btn-success" data-parsley-error-message="Valid input required." placeholder="" autocomplete="off" fdprocessedid="ch7q2d">
+            <input type="reset" name="btnreset" value="Cancel" class="btn btn-warning">
+        </td>
+    </tr>
+    	</table>
+
+</table>
+</table>
+</b></label>
+         {% csrf_token %}
+  </form>  
+  {% include "design/last.html" %}
+</body>
+</html>

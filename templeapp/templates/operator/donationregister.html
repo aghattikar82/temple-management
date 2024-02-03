@@ -1,0 +1,153 @@
+x<!DOCTYPE html>
+<html>
+<head>
+    {% include "design/head.html" %}
+    <title>Donation</title>
+</head>
+<body>
+    {% include "design/operatormid.html" %}
+    {%if dl == "kn" %}
+    <h3>ದೇಣಿಗೆ ನೋಂದಣಿ</h3>
+    <form name="frmexpensehead" method="post" autocomplete="off">
+            <div class="container-fluid mt-3" align="center" >
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-6" style="text-align:left;">
+                            <label for="paidto"><font color="red" >*</font><b>ದಾನಿ ಹೆಸರು</label>
+                                <input type="text" name="donorname" class="form-control" autofocus="on" required placeholder="Enter In English">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-6" style="text-align:left;">
+                            <label for="donarnumber"><font color="red" >*</font>ದಾನಿಗಳ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ</label>
+                                <input type="text" name="donormobilenumber" class="form-control" autofocus="on" required placeholder="ದಾನಿಗಳ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ ">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-6" style="text-align:left;">
+                            <label for="memoryof"><font color="red" >*</font>ಸ್ಮರಣೆಯಲ್ಲಿ </label>
+                                <input type="text" name="memoryof" class="form-control" placeholder="Enter In English" autofocus="on" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-6" style="text-align:left;">
+                            <label for="donateditem"><font color="red" >*</font>ದಾನ ಮಾಡಿದ ವಸ್ತು</label>
+                            <select name="donateditem" required class="form-select" autofocus="on">
+                                <option  value="">ದೇಣಿಗೆ ಪ್ರಕಾರವನ್ನು ಆಯ್ಕೆಮಾಡಿ</option>
+                                {% for d in donationdata  %}       
+                                        <option value="{{d.id}}">{{d.donamtiontype_kn}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-6" style="text-align:left;">
+                            <label for="donatedon"><font color="red" >*</font>ರಂದು ದೇಣಿಗೆ ನೀಡಿದರು</label>
+                                <input type="date" name="donatedon" class="form-control" autofocus="on" placeholder="ರಂದು ದೇಣಿಗೆ ನೀಡಿದರು" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-6" style="text-align:left;">
+                            <label for="note"><font color="red" >*</font>ಸೂಚನೆ</label>
+                            <textarea class="form-control" name="note" placeholder="ಸೂಚನೆ"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p></p>
+            <center>
+                <div class="col-lg-6">
+                    <input type="submit" name="txtexpense" value="Add Donation" class="btn btn-success">
+                    <input type="reset" name="Cancel" value="Cancel" class="btn btn-warning">
+                    
+                </div>
+            </center>
+
+        {% csrf_token %}
+    </form>
+{%else%}
+    <h3>Donation Register</h3>
+    <form name="frmexpensehead" method="post" autocomplete="off">
+            <div class="container-fluid mt-3" align="center" >
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-6" style="text-align:left;">
+                            <label for="paidto"><font color="red" >*</font><b>Donor Name</label>
+                                <input type="text" name="donorname" class="form-control" autofocus="on" required placeholder="Donor Name ">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-6" style="text-align:left;">
+                            <label for="donarnumber"><font color="red" >*</font>Donor Mobile Number</label>
+                                <input type="text" name="donormobilenumber" class="form-control" autofocus="on" required placeholder="Donor Mobile Number ">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-6" style="text-align:left;">
+                            <label for="memoryof"><font color="red" >*</font>In The Memory of </label>
+                                <input type="text" name="memoryof" class="form-control" placeholder="In the Memory Of" autofocus="on" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-6" style="text-align:left;">
+                            <label for="donateditem"><font color="red" >*</font>Donated Item</label>
+                            <select name="donateditem" required class="form-select" autofocus="on">
+                                <option  value="">Select Donation Type</option>
+                                {% for d in donationdata  %}       
+                                        <option value="{{d.id}}">{{d.donamtiontype}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-6" style="text-align:left;">
+                            <label for="donatedon"><font color="red" >*</font>Donated On</label>
+                                <input type="date" name="donatedon" class="form-control" autofocus="on" placeholder="Amount Paid" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-6" style="text-align:left;">
+                            <label for="note"><font color="red" >*</font>Note</label>
+                            <textarea class="form-control" name="note" placeholder="Add Note"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p></p>
+            <center>
+                <div class="col-lg-6">
+                    <input type="submit" name="txtexpense" value="Add Donation" class="btn btn-success">
+                    <input type="reset" name="Cancel" value="Cancel" class="btn btn-warning">
+                    
+                </div>
+            </center>
+
+        {% csrf_token %}
+    </form>
+    {%endif%} 
+</div>
+    {% include "design/last.html" %}
+</body>
+</html>

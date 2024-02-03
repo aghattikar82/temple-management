@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% include "design/head.html" %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <title>Seva Search Day Wise</title>
+
+</head>
+<body>
+  {% include "design/operatormid.html" %} 
+       
+  <h2> ಸೇವಾ ಹುಡುಕಿ</h2>
+  <form autocomplete="off" name="frmfeedetails" method="POST">
+    <table align="center">
+      <tr>
+        <td>
+          <label><b><font color="red">*</font> From Date</b></label>
+          <input type="date" name="fromdate" autofocus="on" required class="form-control">      
+        </td>
+        <td>
+          <label><b><font color="red">*</font>To Date</b></label>
+          <input type="date" name="todate" required class="form-control">
+        </td>
+        <td><br/>
+          <input type="submit" name="btnsubmit" class="btn btn-info" value="Get Data"> 
+        </td>
+      </tr>
+    </table>
+    {% csrf_token %}
+  </form>
+
+
+  {% if devoteedata %}
+  {%if dl == "kn" %}
+<br>
+        <table width="100%;" border="1">
+           <tr>
+            <td><b>ರಶೀದಿ ಐಡಿ</td>
+            <td><b>ಭಕ್ತನ ಹೆಸರು</b></td>
+            <td><b> ಸೇವಾ ದಿನಾಂಕ </b></td>
+            <td><b>ಒಟ್ಟು ಮೊತ್ತ</b></td>
+          </tr>
+           {% for dd in devoteedata %}
+          <tr>
+            <td>
+              <form name="frm" method="post" action="optdevoteeprintreceipt">
+                <input type="hidden" name="rid" value="{{dd.id}}" />
+                <input type="submit" name="btnsubmit" class="btn btn-link" value="{{dd.id}}">
+              {%csrf_token%}
+            </form>
+            </td>
+            <td>{{dd.devoteename_kn}}</td>
+            <td>{{dd.devoteedevadateindian}}</td>
+            <td>₹ {{dd.devoteetotalamount}}</td>
+            <td>
+            <form method="post" name="txtsearch">
+              <input type="hidden" name="did" value="{{dd.id}}">
+              <input type="submit" name="btnsubmit" value="Cancel" class="btn btn-danger">
+        {% csrf_token %}
+            </form>
+          </td>
+            {% endfor %}
+          </tr>
+             <tr>
+            <td><b>ಒಟ್ಟು ಮೊತ್ತ :</b></td>
+            <td><b>₹ {{collectionsum}}</b></td>
+          </tr>
+        </table>
+        
+{%else%}  
+
+        <table width="100%;" border="1">
+           <tr>
+            <td><b>Receipt Id</td>
+            <td><b>Devotee Name</b></td>
+            <td><b> Seva Date</b></td>
+            <td><b>Total Amount</b></td>
+          </tr>
+           {% for dd in devoteedata %}
+          <tr>
+            <td>
+              <form name="frm" method="post" action="optdevoteeprintreceipt">
+                <input type="hidden" name="rid" value="{{dd.id}}" />
+                <input type="submit" name="btnsubmit" class="btn btn-link" value="{{dd.id}}">
+              {%csrf_token%}
+            </form>
+            </td>
+            <td>{{dd.devoteename_en}}</td>
+            <td>{{dd.devoteedevadateindian}}</td>
+            <td>₹ {{dd.devoteetotalamount}}</td>
+            <td>
+            <form method="post" name="txtsearch">
+              <input type="hidden" name="did" value="{{dd.id}}">
+              <input type="submit" name="btnsubmit" value="Cancel" class="btn btn-danger">
+        {% csrf_token %}
+            </form>
+          </td>
+            {% endfor %}
+          </tr>
+             <tr>
+            <td><b>Total:</b></td>
+            <td><b>₹ {{collectionsum}}</b></td>
+          </tr>
+        </table>
+         {%endif%} 
+    
+  {% endif %}
+  {% include 'design/last.html' %}
+</body>
+</html>

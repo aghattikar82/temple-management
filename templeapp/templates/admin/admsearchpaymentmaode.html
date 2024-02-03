@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% include "design/head.html" %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <title>Seva Search Day Wise</title>
+
+</head>
+<body>
+  {% include "design/adminmid.html" %} 
+   {%if dl == "kn" %}
+  <h3>ಸೇವಾ ಪಾವತಿ ಪ್ರಕಾರದ ವರದಿ</h3>
+       {%else%}
+  <h3>Seva Payment Type Report</h3>
+       {%endif%}
+{%if dl == "kn" %}
+<form autocomplete="off" name="Search" method="POST"  >
+
+ <div class="container-fluid mt-3" >
+  <div class="input-group mb-3" align="center"> 
+     <span class="col-3" >
+       
+    </span>
+    <span class="col-5">
+      <select name="txtsearch" id="txtsearch" autofocus="on"  required class="form-select select2-hidden-accessible" data-select2-id="txtsearch"  aria-hidden="true">
+        <option value="">ಪಾವತಿ ಮೋಡ್ ಆಯ್ಕೆಮಾಡಿ</option>
+        <option value="cash">ನಗದು</option>
+        <option value="bank">ಬ್ಯಾಂಕ್</option>
+      </select>
+    </span><input type="submit" name="btnsubmit" class="btn btn-info" value="Get Data"> 
+  </div>
+</div>
+
+{% csrf_token %}
+</form>
+
+  {% if devoteedata %}
+
+        <table width="100%;" border="1">
+           <tr>
+            <td><b>ರಶೀದಿ ಐಡಿ</td>
+            <td><b>ಭಕ್ತನ ಹೆಸರು</b></td>
+            <td><b> ಸೇವಾ ದಿನಾಂಕ </b></td>
+            <td><b> ಒಟ್ಟು ಮೊತ್ತ</b></td>
+            <td><b>ಪಾವತಿ ಮೋಡ್</b></td>
+            <td><b> ವಹಿವಾಟಿನ ವಿವರಗಳು</b></td>
+           
+          </tr>
+           {% for dd in devoteedata %}
+          <tr>
+            <td>
+              <form name="frm" method="post" action="admdevoteepaymentprintreceipt">
+                <input type="hidden" name="rid" value="{{dd.id}}" />
+                <input type="submit" name="btnsubmit" class="btn btn-link" value="{{dd.id}}">
+              {%csrf_token%}
+            </form>
+            </td>
+            <td>{{dd.devoteename_kn}}</td>
+            <td>{{dd.devoteedevadateindian}}</td>
+            <td>{{dd.devoteetotalamount}}</td>
+            <td>{{dd.dpaymentmode}}</td>
+            <td>{{dd.dtransactionno}}</td>
+            <td>
+            <form method="post" name="txtsearch">
+              <input type="hidden" name="did" value="{{dd.id}}">
+              <input type="submit" name="btnsubmit" value="Cancel" class="btn btn-danger">
+        {% csrf_token %}
+            </form>
+          </td>
+            {% endfor %}
+          </tr>
+            <tr>
+            <td><b>Total Amount :</b></td>
+            <td><b>₹ {{collectionsum}}</b></td>
+          </tr>
+        </table>
+        
+         
+    
+  {% endif %}
+
+{%else%}
+
+  <form autocomplete="off" name="Search" method="POST"  >
+
+ <div class="container-fluid mt-3" >
+  <div class="input-group mb-3" align="center"> 
+     <span class="col-3" >
+       
+    </span>
+    <span class="col-5">
+      <select name="txtsearch" id="txtsearch" autofocus="on"  required class="form-select select2-hidden-accessible" data-select2-id="txtsearch"  aria-hidden="true">
+        <option value="">Select Payment Mode</option>
+        <option value="cash">CASH</option>
+        <option value="bank">BANK</option>
+      </select>
+    </span><input type="submit" name="btnsubmit" class="btn btn-info" value="Get Data"> 
+  </div>
+</div>
+
+{% csrf_token %}
+</form>
+
+  {% if devoteedata %}
+
+        <table width="100%;" border="1">
+           <tr>
+            <td><b>Receipt ID</td>
+            <td><b>Devotte Name</b></td>
+            <td><b> Seva Date </b></td>
+            <td><b> Total Amount</b></td>
+            <td><b>Payment Mode</b></td>
+            <td><b> Transaction Details</b></td>
+           
+          </tr>
+           {% for dd in devoteedata %}
+          <tr>
+            <td>
+              <form name="frm" method="post" action="admdevoteepaymentprintreceipt">
+                <input type="hidden" name="rid" value="{{dd.id}}" />
+                <input type="submit" name="btnsubmit" class="btn btn-link" value="{{dd.id}}">
+              {%csrf_token%}
+            </form>
+            </td>
+              {%if dl == "kn" %}
+                <td>{{dd.devoteename_kn}}</td>
+                {%else%}
+                <td>{{dd.devoteename_en}}</td>
+                {%endif%} 
+            <td>{{dd.devoteedevadateindian}}</td>
+            <td>{{dd.devoteetotalamount}}</td>
+            <td>{{dd.dpaymentmode}}</td>
+            <td>{{dd.dtransactionno}}</td>
+            <td>
+            <form method="post" name="txtsearch">
+              <input type="hidden" name="did" value="{{dd.id}}">
+              <input type="submit" name="btnsubmit" value="Cancel" class="btn btn-danger">
+        {% csrf_token %}
+            </form>
+          </td>
+            {% endfor %}
+          </tr>
+            <tr>
+            <td><b>Total Amount :</b></td>
+            <td><b>₹ {{collectionsum}}</b></td>
+          </tr>
+        </table>
+        
+    
+  {% endif %}       
+    
+  {% endif %}
+  {% include 'design/last.html' %}
+</body>
+</html>

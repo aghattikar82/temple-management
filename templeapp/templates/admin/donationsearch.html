@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% include "design/head.html" %}
+  <title>Search Donation</title>
+</head>
+<body>
+  {% include 'design/adminmid.html' %}
+  	  {% include 'design/msg.html' %}
+  {%if dl == "kn" %}
+         <h2>ಹುಡುಕಿ ಡೊನೇಷನ್</h2>
+       
+<form autocomplete="off" name="Search" method="POST"  >
+
+ <div class="container-fluid mt-3" >
+  <div class="input-group mb-3" align="center">	
+  	<span class="col-3" >
+       
+    </span>
+		<span class="col-5">
+			<input type="text" autofocus="on"  name="txtsearch" placeholder="ದೇಣಿಗೆ ಪ್ರಕಾರವನ್ನು ನಮೂದಿಸಿ" required class="form-control">
+		</span><input type="submit" name="btnsubmit" class="btn btn-info" value="Get Data">	
+	</div>
+</div>
+
+{% csrf_token %}
+</form>
+
+{%else%}
+        <h2>Search Donation</h2>
+        <form autocomplete="off" name="Search" method="POST"  >
+
+ <div class="container-fluid mt-3" >
+  <div class="input-group mb-3" align="center">	
+  	<span class="col-3" >
+       
+    </span>
+		<span class="col-5">
+			<input type="text" autofocus="on"  name="txtsearch" placeholder="Enter Donation Type" required class="form-control">
+		</span><input type="submit" name="btnsubmit" class="btn btn-info" value="Get Data">	
+	</div>
+</div>
+
+{% csrf_token %}
+</form>
+       {%endif%}
+</body>
+
+
+ {%if dl == "kn" %}
+ {% if donationdata%}
+ <div class="container mt-3"  >
+         <table align="center" class="table table-bordered">
+         	<tr>
+         		<td ><b>ದೇಣಿಗೆ ಹೆಸರು</b>  </td>
+         		<td ><b>ಕನ್ನಡದಲ್ಲಿ ದೇಣಿಗೆ ಹೆಸರು</b>  </td>
+         		
+         	</tr>
+         	{% for d in donationdata %}
+         	<tr >
+         		<td>{{d.donamtiontype}}</td>
+         		<td>{{d.donamtiontype_kn}}</td>
+						<td>
+		        <form method="post" name="txtsearch">
+		          <input type="hidden" name="did" value="{{d.id}}">
+		          <input type="submit" name="btnsubmit" value="Disable" class="btn btn-danger fa-recycle ">
+		    {% csrf_token %}
+		        </form>
+						</td>
+						 {% endfor %}
+         	</tr>
+         </table>
+        </div>
+        {%endif%}
+
+{%else%}
+ {% if donationdata%}
+<div class="container mt-3"  >
+         <table align="center" class="table table-bordered">
+         	<tr>
+         		<td ><b>Donation Name</b>  </td>
+         		<td ><b>Donation Name In Kannada</b>  </td>
+         		
+         	</tr>
+         	{% for d in donationdata %}
+         	<tr >
+         		<td>{{d.donamtiontype}}</td>
+         		<td>{{d.donamtiontype_kn}}</td>
+						<td>
+		        <form method="post" name="txtsearch">
+		          <input type="hidden" name="did" value="{{d.id}}">
+		          <input type="submit" name="btnsubmit" value="Disable" class="btn btn-danger fa-recycle ">
+		    {% csrf_token %}
+		        </form>
+						</td>
+						 {% endfor %}
+         	</tr>
+         </table>
+        </div>
+{%endif%}
+{%endif%}
+
+  {% include "design/last.html" %}
+</body>
+</html>

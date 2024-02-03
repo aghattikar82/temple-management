@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% include "design/head.html" %}
+  <title>Search Expense</title>
+</head>
+<body>
+  {% include 'design/adminmid.html' %}
+  	  {% include 'design/msg.html' %}
+  {%if dl == "kn" %}
+         <h2>ಖರ್ಚು ಹುಡುಕಿ</h2>
+       
+<form autocomplete="off" name="Search" method="POST"  >
+
+ <div class="container-fluid mt-3" >
+  <div class="input-group mb-3" align="center">	
+  	<span class="col-3" >
+       
+    </span>
+		<span class="col-5">
+			<input type="text" autofocus="on"  name="txtsearch" placeholder="ವೆಚ್ಚದ ಪ್ರಕಾರವನ್ನು ನಮೂದಿಸಿ" required class="form-control">
+		</span><input type="submit" name="btnsubmit" class="btn btn-info" value="Get Data">	
+	</div>
+</div>
+
+{% csrf_token %}
+</form>
+
+{%else%}
+        <h2>Search Expenses</h2>
+        <form autocomplete="off" name="Search" method="POST"  >
+
+ <div class="container-fluid mt-3" >
+  <div class="input-group mb-3" align="center">	
+  	<span class="col-3" >
+       
+    </span>
+		<span class="col-5">
+			<input type="text" autofocus="on"  name="txtsearch" placeholder="Enter Expense Type" required class="form-control">
+		</span><input type="submit" name="btnsubmit" class="btn btn-info" value="Get Data">	
+	</div>
+</div>
+
+{% csrf_token %}
+</form>
+       {%endif%}
+</body>
+{%if dl == "kn" %}
+{%if expensedata %}
+ <div class="container mt-3"  >
+         <table align="center" class="table table-bordered">
+         	<tr>
+         		<td><b>ವೆಚ್ಚದ ಹೆಸರು</b>  </td>
+         		<td><b>ಕನ್ನಡದಲ್ಲಿ ವೆಚ್ಚದ ಹೆಸರು</b>  </td>
+
+         	</tr>
+         	{% for d in expensedata %}
+         	<tr >
+         		<td>{{d.expensehead}}</td>
+         		<td>{{d.expensehead_kn}}</td>
+						<td>
+						
+		        <form method="post" name="txtsearch">
+		          <input type="hidden" name="did" value="{{dd.id}}">
+		          <input type="submit" name="btnsubmit" value="Disable" class="btn btn-danger bi bi-trash ">
+		    {% csrf_token %}
+		        </form>
+						</td>
+         	</tr>
+         	 {% endfor %}
+         	<tr>
+         	</tr>
+         </table>
+        </div>
+{%endif%}
+  </form>
+
+
+{%else%}
+{%if expensedata %}
+  <div class="container mt-3"  >
+         <table align="center" class="table table-bordered">
+         	<tr>
+         		<td><b>Expense Name</b>  </td>
+         		<td><b>Expense Name in Kannada</b>  </td>
+
+         	</tr>
+         	{% for d in expensedata %}
+         	<tr >
+         		<td>{{d.expensehead}}</td>
+         		<td>{{d.expensehead_kn}}</td>
+						<td>
+						
+		        <form method="post" name="txtsearch">
+		          <input type="hidden" name="did" value="{{dd.id}}">
+		          <input type="submit" name="btnsubmit" value="Disable" class="btn btn-danger bi bi-trash ">
+		    {% csrf_token %}
+		        </form>
+						</td>
+         	</tr>
+         	 {% endfor %}
+         	<tr>
+         	</tr>
+         </table>
+        </div>
+{%endif%}
+  </form>
+  {%endif%}
+  {% include "design/last.html" %}
+</body>
+</html>

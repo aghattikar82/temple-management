@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Operator Home </title>
+	        {% include 'design/head.html' %}
+</head>
+
+<body>
+	 {% include 'design/operatormid.html' %}
+	  {% include 'design/msg.html' %}
+	     {%if dl == "kn" %}
+       <h3 align="left">ಆಪರೇಟರ್ ಹೋಮ್</h3>
+       {%else%}
+       <h3 align="left">Operator Home</h3>
+       {%endif%}
+
+<body>
+ {%if dl == "kn" %}
+	<form name="countrecord" method="POST">
+		<center>
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12 mt-2" align="left">
+						<b><font size="5" color="Red"><u>ಸೇವಾ ವಿವರಗಳು</u></font></b>
+					</div>
+
+					<div class="col-sm-3 mt-2">
+						<a  href="#"  style="font-size: 25px;" class="btn btn-primary form-control">
+							<b>ಇಂದಿನ ಸೇವಾ ಎಣಿಕೆ<br></b>{{todaysevacount}}</a>
+							
+					</div>
+					<div class="col-sm-3 mt-2">
+						<a href="#" style="font-size: 25px;" class="btn btn-warning form-control">
+							<b>ನಾಳೆ ಸೇವಾ ಎಣಿಕೆ<br>{{tommorowsevacount}}</b></a>
+					</div>
+					<div class="col-sm-3 mt-2">
+						<a href="#" style="font-size: 25px;" class="btn btn-success  form-control"><b>ವಾರ್ಷಿಕ ಸೇವಾ ಎಣಿಕೆ<br>{{yearlysevacount}}</b></a>
+					</div>
+					<div class="col-sm-3 mt-2">
+						<a href="#" style="font-size: 25px;" class="btn btn-secondary  form-control"><b>ಒಟ್ಟು ಸೇವಾ ಎಣಿಕೆ<br>{{totalsevacount}}</b></a>
+					</div>
+
+				</div>
+
+				<div class="row">
+					<div class="col-sm-12 mt-2" align="left">
+						<b><font size="5" color="Red">ಸೇವಾ ವಿವರಗಳ ಮೊತ್ತ</u></font></b>
+					</div>
+
+					<div class="col-sm-3 mt-2">
+						<a  href="#" style="font-size: 25px;"  class="btn btn-primary form-control">
+							<b>ಇಂದಿನ ಸೇವಾ ಮೊತ್ತ<br>{{todaycollectedsevaamout}}</b></a>
+					</div>
+					<div class="col-sm-3 mt-2">
+						<a href="#" style="font-size: 25px;" class="btn btn-warning form-control">
+							<b>ನಾಳೆ ಸೇವಾ ಮೊತ್ತ<br>{{tommorowcollectedsevaamout}}</b></a>
+					</div>
+					<div class="col-sm-3 mt-2">
+						<a href="#" style="font-size: 25px;" class="btn btn-success  form-control"><b>ವಾರ್ಷಿಕ ಸೇವಾ ಮೊತ್ತ<br>{{yearlycollectedsevaamout}}</b></a>
+					</div>
+					<div class="col-sm-3 mt-2">
+						<a href="#" style="font-size: 25px;" class="btn btn-secondary  form-control"><b>ಒಟ್ಟು ಸೇವಾ ಮೊತ್ತ<br>{{totalcollectedsevaamout}}</b></a>
+					</div>
+
+				</div>
+
+				<div class="row">
+					<div class="col-sm-12 mt-2" align="left">
+						<b><font size="5" color="Red">ವೆಚ್ಚದ ವಿವರಗಳು</u></font></b>
+					</div>
+
+					<div class="col-sm-3 mt-2">
+						<a  href="#" style="font-size: 25px;"  class="btn btn-primary form-control">
+							<b>ಇಂದಿನ ವೆಚ್ಚದ ಮೊತ್ತ<br>{{todaycollectedexpenseamout}}</b></a>
+					</div>
+					<div class="col-sm-3 mt-2">
+						<a href="#" style="font-size: 25px;" class="btn btn-warning form-control">
+							<b>ನಾಳೆಯ ವೆಚ್ಚದ ಮೊತ್ತ<br>{{tommorowcollectedexpenseamout}}</b></a>
+					</div>
+					<div class="col-sm-3 mt-2">
+						<a href="#" style="font-size: 25px;" class="btn btn-success  form-control"><b>ವಾರ್ಷಿಕ ವೆಚ್ಚದ ಮೊತ್ತ<br>{{yealrycollectedexpenseamout}}</b></a>
+					</div>
+					<div class="col-sm-3 mt-2">
+						<a href="#" style="font-size: 25px;" class="btn btn-secondary  form-control"><b>ಒಟ್ಟು ವೆಚ್ಚದ ಮೊತ್ತ<br>{{totalcollectedexpenseamout}}</b></a>
+					</div>
+
+				</div>
+				<div class="row">
+					<div class="col-sm-12 mt-2" align="left">
+						<b><font size="5" color="Red">ದೇಣಿಗೆ ವಿವರಗಳು</u></font></b>
+					</div>
+
+					<div class="col-sm-3 mt-2">
+						<a  href="#" style="font-size: 25px;"  class="btn btn-primary form-control">
+							<b>ಇಂದಿನ ದೇಣಿಗೆ ಎಣಿಕೆ<br>{{todaydonationcount}}</b></a>
+					</div>
+					<div class="col-sm-3 mt-2">
+						<a href="#" style="font-size: 25px;" class="btn btn-warning form-control">
+							<b>ನಾಳೆ ದೇಣಿಗೆ ಎಣಿಕೆ<br>{{tommorowdonationcount}}</b></a>
+					</div>
+					<div class="col-sm-3 mt-2">
+						<a href="#" style="font-size: 25px;" class="btn btn-success  form-control"><b>ವಾರ್ಷಿಕ ದೇಣಿಗೆ ಎಣಿಕೆ<br>{{yearlydonationcount}}</b></a>
+					</div>
+					<div class="col-sm-3 mt-2">
+						<a href="#" style="font-size: 25px;" class="btn btn-secondary  form-control"><b>ಒಟ್ಟು ದೇಣಿಗೆ ಎಣಿಕೆ<br>{{totaldonationcount}}</b></a>
+					</div>
+				</div>
+
+			</div>
+		</center>
+			 {% csrf_token %}		
+	</form>
+
+	{%else%}
+
+	<form name="countrecord" method="POST">
+		<center>
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12 mt-2" align="left">
+						<b><font size="5" color="Red">Seva Details</u></font></b>
+					</div>
+
+					<div class="col-sm-3 mt-2">
+						<a  href="#" style="font-size: 25px;"  class="btn btn-primary form-control">
+							<b>Todays Seva Count<br></b>{{todaysevacount}}</a>
+							
+					</div>
+					<div class="col-sm-3 mt-2">
+						<a href="#" style="font-size: 25px;" class="btn btn-warning form-control">
+							<b>Tomorrow Seva Count<br>{{tommorowsevacount}}</b></a>
+					</div>
+					<div class="col-sm-3 mt-2">
+						<a href="#" style="font-size: 25px;" class="btn btn-success  form-control"><b>Yearly Seva Count<br>{{yearlysevacount}}</b></a>
+					</div>
+					<div class="col-sm-3 mt-2">
+						<a href="#" style="font-size: 25px;"  class="btn btn-secondary  form-control"><b>Total Seva Count<br>{{totalsevacount}}</b></a>
+					</div>
+
+				</div>
+
+				<div class="row">
+					<div class="col-sm-12 mt-2" align="left">
+						<b><font size="5" color="Red">Seva Details Amount</u></font></b>
+					</div>
+
+					<div class="col-sm-3 mt-2">
+						<a  href="#" style="font-size: 25px;"  class="btn btn-primary form-control">
+							<b>Todays Seva <br>{{todaycollectedsevaamout}}</b></a>
+					</div>
+					<div class="col-sm-3 mt-2">
+						<a href="#"style="font-size: 25px;"  class="btn btn-warning form-control">
+							<b>Tomorrow Seva <br>{{tommorowcollectedsevaamout}}</b></a>
+					</div>
+					<div class="col-sm-3 mt-2">
+						<a href="#" style="font-size: 25px;" class="btn btn-success  form-control"><b>Yearly Seva <br>{{yearlycollectedsevaamout}}</b></a>
+					</div>
+					<div class="col-sm-3 mt-2">
+						<a href="#" style="font-size: 25px;" class="btn btn-secondary  form-control"><b>Total Seva <br>{{totalcollectedsevaamout}}</b></a>
+					</div>
+
+				</div>
+
+				<div class="row">
+					<div class="col-sm-12 mt-2" align="left">
+						<b><font size="5" color="Red">Expense Details</u></font></b>
+					</div>
+
+					<div class="col-sm-3 mt-2">
+						<a  href="#" style="font-size: 25px;"  class="btn btn-primary form-control">
+							<b>Todays Expense <br>{{todaycollectedexpenseamout}}</b></a>
+					</div>
+					<div class="col-sm-3 mt-2">
+						<a href="#" style="font-size: 25px;" class="btn btn-warning form-control">
+							<b>Tomorrows Expense <br>{{tommorowcollectedexpenseamout}}</b></a>
+					</div>
+					<div class="col-sm-3 mt-2">
+						<a href="#" style="font-size: 25px;" class="btn btn-success  form-control"><b>Yearly Expense <br>{{yealrycollectedexpenseamout}}</b></a>
+					</div>
+					<div class="col-sm-3 mt-2">
+						<a href="#" style="font-size: 25px;" class="btn btn-secondary  form-control"><b>Total Expense <br>{{totalcollectedexpenseamout}}</b></a>
+					</div>
+
+				</div>
+				<div class="row">
+					<div class="col-sm-12 mt-2" align="left">
+						<b><font size="5" color="Red">Donation Details</u></font></b>
+					</div>
+
+					<div class="col-sm-3 mt-2">
+						<a  href="#" style="font-size: 25px;"  class="btn btn-primary form-control">
+							<b>Todays Donation <br>{{todaydonationcount}}</b></a>
+					</div>
+					<div class="col-sm-3 mt-2">
+						<a href="#" style="font-size: 25px;" class="btn btn-warning form-control">
+							<b>Tomorrows <br>{{tommorowdonationcount}}</b></a>
+					</div>
+					<div class="col-sm-3 mt-2">
+						<a href="#" style="font-size: 25px;" class="btn btn-success  form-control"><b>Yearly Donation <br>{{yearlydonationcount}}</b></a>
+					</div>
+					<div class="col-sm-3 mt-2">
+						<a href="#" style="font-size: 25px;" class="btn btn-secondary  form-control"><b>Total Donation <br>{{totaldonationcount}}</b></a>
+					</div>
+
+				</div>
+
+			</div>
+		</center>
+			 {% csrf_token %}		
+	</form>
+	{%endif%}
+    {% include 'design/last.html' %}
+
+
+</body>
+</html>

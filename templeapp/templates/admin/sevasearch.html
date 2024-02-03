@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% include "design/head.html" %}
+  <title>Search Seva</title>
+</head>
+<body>
+  {% include 'design/adminmid.html' %}
+  	  {% include 'design/msg.html' %}
+   {%if dl == "kn" %}
+         <h2>ಸೇವಾ ಹುಡುಕಿ</h2>
+<form autocomplete="off" name="Search" method="POST"  >
+
+ <div class="container-fluid mt-3" >
+  <div class="input-group mb-3" align="center">	
+  	    <span class="col-3" >
+       
+    </span>
+		<span class="col-5" >
+			<input type="text" autofocus="on"  name="txtsearch" placeholder="ಸೇವೆಯನ್ನು ನಮೂದಿಸಿ" required class="form-control">
+		</span>
+		<input type="submit" name="btnsubmit" class="btn btn-info" value="Get Data">	
+	</div>
+
+{% csrf_token %}
+</form>
+
+{%else%}
+<h2>Search Seva</h2>
+<form autocomplete="off" name="Search" method="POST"  >
+
+ <div class="container-fluid mt-3" >
+  <div class="input-group mb-3" align="center">	
+  	    <span class="col-3" >
+       
+    </span>
+		<span class="col-5" >
+			<input type="text" autofocus="on"  name="txtsearch" placeholder="Enter Seva" required class="form-control">
+		</span>
+		<input type="submit" name="btnsubmit" class="btn btn-info" value="Get Data">	
+	</div>
+</div>
+{% csrf_token %}
+</form>
+
+       {%endif%}
+</body>
+{%if dl == "kn" %}
+ 
+ <div class="container mt-3"  >
+ 		{% if sevadata %}
+ 		
+         <table align="center" class="table table-bordered">
+         	<tr>
+         		<td><b>ಸೇವಾ ಹೆಸರು ಕನ್ನಡ</b></td>
+         		<td><b>ಸೇವಾ ಹೆಸರು ಇಂಗ್ಲೀಷ್</b></td>
+         		<td><b>ಮೊತ್ತ</b></td>
+         	</tr>
+ 				{% for d in sevadata %}
+         	<tr>
+         		<td>{{d.sevaname_kn}}</td>
+         		<td>{{d.sevaname_en}}</td>
+						<td>{{d.amount}}</td>
+						<td>
+						
+		        <form method="post" name="txtsearch">
+		          <input type="hidden" name="sid" value="{{d.id}}">
+		          <input type="submit" name="btnsubmit" value="Disable" class="btn btn-danger fa-recycle ">
+		    {% csrf_token %}
+		        </form>
+						</td>
+ 					{% endfor %}
+  
+         	</tr>
+         	<tr>
+         	</tr>
+     
+         </table>
+          {% endif %}
+         
+{%else%}
+<table align="center" class="table table-bordered">
+         	<tr>
+         		<td><b>Seva Name Kannada</b></td>
+         		<td><b>Seva Name English</b></td>
+         		<td><b>Amount</b></td>
+         	</tr>
+ 				{% for d in sevadata %}
+         	<tr>
+         		<td>{{d.sevaname_kn}}</td>
+         		<td>{{d.sevaname_en}}</td>
+						<td>{{d.amount}}</td>
+						<td>
+						
+		        <form method="post" name="txtsearch">
+		          <input type="hidden" name="sid" value="{{d.id}}">
+		          <input type="submit" name="btnsubmit" value="Disable" class="btn btn-danger fa-recycle ">
+		    {% csrf_token %}
+		        </form>
+						</td>
+ {% endfor %}
+  {% endif %}
+         	</tr>
+         	<tr>
+         	</tr>
+         </table>
+
+        </div>
+ 
+  </form>
+  {% include "design/last.html" %}
+</body>
+</html>

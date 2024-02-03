@@ -1,0 +1,134 @@
+  <!DOCTYPE html>
+<html>
+<head>
+  {% include "design/head.html" %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Balance Sheet</title>
+
+</head>
+<body>
+  {% include "design/operatormid.html" %} 
+  {% include 'design/msg.html' %}
+   {%if dl == "kn" %}
+<h3>ಬ್ಯಾಲೆನ್ಸ್ ಶೀಟ್</h3>
+{%else%}
+<h3>Balance Sheet</h3>
+{%endif%}
+<form autocomplete="off" name="form" method="POST"  >
+{%for d in data %}
+   <input type="hidden" name="todate" value="{{d.todate}}" />
+   <input type="hidden" name="fromdate" value="{{d.fromdate}}" />
+   <input type="hidden" name="expenseamount" value="{{d.expenseamount}}" />
+   <input type="hidden" name="totalamount" value="{{d.totalamount}}" />
+{%endfor%}
+<table align="center">
+  <tr>
+    <td>
+        <label><b><font color="red">*</font> From Date</b></label>
+        <input type="date" name="fromdate"  autofocus="on" required class="form-control">      
+    </td>
+    <td>
+        <label><b><font color="red">*</font>To Date</b></label>
+        <input type="date" name="todate"  required class="form-control">
+    </td>
+    <td><br/>
+          <input type="submit" name="btnsubmit" class="btn btn-info" value="Get Data"> 
+    </td>
+  </tr>
+</table>
+
+{% csrf_token %}
+</form>
+{% if data %}
+ {%if dl == "kn" %}
+    <div class="container mt-3"  >
+  <div id="accordion">
+    <div class="card">
+  <div id="printableArea" >
+      <table align="center" class="table table-bordered">
+        <tr>
+          <th>ದಿನಾಂಕ</th>
+          <th>ಸಂಗ್ರಹಿಸಿದ ಮೊತ್ತ</th>
+          <th>ವೆಚ್ಚಗಳ ಮೊತ್ತ</th>
+          <th>ಬಾಕಿ ಮೊತ್ತ</th>
+        </tr>
+      {% for d in data %}
+          <tr>
+            <td>{{d.fromdate}}</td>
+            <td>{{d.totalamount}}</td>
+            <td>{{d.expenseamount}}</td>
+            <td>{{d.balanceamount}}</td>
+          </tr>
+     {% endfor %}
+     <tr>
+       <td><b>ಒಟ್ಟು ಮೊತ್ತ</b></td>
+       <td><b>{{totalcollectedsum}}</b></td>
+       <td><b>{{totalexpensesum}}</b></td>
+       <td><b>{{totalbalance}}</b></td>
+     </tr>
+         </table>
+      </div>
+        </div>  <br> 
+               <center>
+            <input type="button" onclick="printDiv('printableArea')" value="Print" class="btn btn-info" />    
+            </center>  
+      </div>
+
+      </div>
+    </div>
+</div>
+
+
+{%else%}
+<div class="container mt-3"  >
+  <div id="accordion">
+    <div class="card">
+  <div id="printableArea" >
+      <table align="center" class="table table-bordered">
+        <tr>
+          <th>Date</th>
+          <th>Collected</th>
+          <th>Expenses</th>
+          <th>Balance</th>
+        </tr>
+      {% for d in data %}
+          <tr>
+            <td>{{d.fromdate}}</td>
+            <td>{{d.totalamount}}</td>
+            <td>{{d.expenseamount}}</td>
+            <td>{{d.balanceamount}}</td>
+          </tr>
+     {% endfor %}
+     <tr>
+       <td><b>Total</b></td>
+       <td><b>{{totalcollectedsum}}</b></td>
+       <td><b>{{totalexpensesum}}</b></td>
+       <td><b>{{totalbalance}}</b></td>
+     </tr>
+         </table>
+      </div>
+        </div>   
+
+      <br>
+            <center>
+            <input type="button" onclick="printDiv('printableArea')" value="Print" class="btn btn-info" />    
+            </center>  
+      </div>
+      {%endif%}
+
+    </div>
+
+</div>
+
+</div>
+
+</div>
+{% endif %}
+</div>
+</div>
+</div>
+{% include "design/last.html" %}
+
+
+</html>

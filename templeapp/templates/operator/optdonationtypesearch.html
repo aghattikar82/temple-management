@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% include "design/head.html" %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <title>Donation Type Report</title>
+  <script type="text/javascript">
+    function printDiv(divName) {
+      var printContents = document.getElementById(divName).innerHTML;
+      var originalContents = document.body.innerHTML;
+
+      document.body.innerHTML = printContents;
+
+      window.print();
+
+      document.body.innerHTML = originalContents;
+    }
+
+  </script>
+</head>
+<body>
+  {% include "design/operatormid.html" %} 
+      {%if dl == "kn" %}
+  <h3>ದೇಣಿಗೆ ಪ್ರಕಾರದ ವರದಿ</h3>
+  {%else%}
+  <h3>Donation Type Report</h3>
+  {%endif%}
+
+<form autocomplete="off" name="Search" method="POST"  >
+ <div class="container-fluid mt-3" >
+  <div class="input-group mb-3" > 
+    <span class="col-3">
+      
+    </span>
+    <span class="col-5">
+      <select name="txtsearch" id="txtsearch"  required class="form-select select2-hidden-accessible" data-select2-id="txtsearch"  aria-hidden="true">
+         {%if dl == "kn" %}
+        <option  value="">ದೇಣಿಗೆ ಪ್ರಕಾರವನ್ನು ಆಯ್ಕೆಮಾಡಿ</option>
+        {% for d in donationdatatype  %}       
+                <option value="{{d.id}}">{{d.donamtiontype_kn}}</option>
+        {% endfor %}
+        {%else%}
+        <option  value="">Select Donation Type</option>
+        {% for d in donationdatatype  %}       
+                <option value="{{d.id}}">{{d.donamtiontype}}</option>
+        {% endfor %}
+        {%endif%}
+      </select>
+    </span><input type="submit" name="btnsubmit" class="btn btn-info" value="Get Data"> 
+  </div>
+</div>
+
+{% csrf_token %}
+</form>
+  {%if dl == "kn" %}
+  {% if donationdata %}
+        <table width="100%;" border="1">
+           <tr>
+            <td><b>ದೇಣಿಗೆ ಐಡಿ</td>
+            <td><b>ಭಕ್ತನ ಹೆಸರು</b></td>
+            <td><b>ದೇಣಿಗೆ ಐಟಂ</b></td>
+            <td><b>ದೇಣಿಗೆ ನೀಡಿದ ದಿನಾಂಕ</b></td>
+          </tr>
+           {% for dd in donationdata %}
+          <tr>
+            <td>
+              <form name="frm" method="post" action="optdonationtypedonationreceipt">
+                <input type="hidden" name="did" value="{{dd.id}}" />
+                <input type="submit" name="btnsubmit" class="btn btn-link" value="{{dd.id}}">
+              {%csrf_token%}
+            </form>
+            </td>
+            <td>{{dd.donorname_kn}}</td>
+            <td>{{dd.donateditem.donamtiontype_kn}}</td>
+            <td>{{dd.donationindiandate}}</td>
+            <td>
+            <form method="post" name="txtsearch">
+              <input type="hidden" name="did" value="{{dd.id}}">
+              <input type="submit" name="btnsubmit" value="Cancel" class="btn btn-danger">
+        {% csrf_token %}
+            </form>
+          </td>
+            {% endfor %}
+          </tr>
+        </table>
+        
+         
+    
+  {% endif %}
+
+  {%else%}
+  {% if donationdata %}
+        <table width="100%;" border="1">
+           <tr>
+            <td><b>Donation ID</td>
+            <td><b>Devotte Name</b></td>
+            <td><b>Donation item</b></td>
+            <td><b>Donated Date</b></td>
+          </tr>
+           {% for dd in donationdata %}
+          <tr>
+            <td>
+              <form name="frm" method="post" action="optdonationtypedonationreceipt">
+                <input type="hidden" name="did" value="{{dd.id}}" />
+                <input type="submit" name="btnsubmit" class="btn btn-link" value="{{dd.id}}">
+              {%csrf_token%}
+            </form>
+            </td>
+            <td>{{dd.donorname}}</td>
+            <td>{{dd.donateditem.donamtiontype}}</td>
+            <td>{{dd.donationindiandate}}</td>
+            <td>
+            <form method="post" name="txtsearch">
+              <input type="hidden" name="did" value="{{dd.id}}">
+              <input type="submit" name="btnsubmit" value="Cancel" class="btn btn-danger">
+        {% csrf_token %}
+            </form>
+          </td>
+            {% endfor %}
+          </tr>
+        </table>
+        
+         
+    
+  {% endif %}
+  {%endif%}
+  {% include 'design/last.html' %}
+  
+</body>
+</html>

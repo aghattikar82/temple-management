@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Seva Master </title>
+	        {% include 'design/head.html' %}
+</head>
+
+<body>
+	 {% include 'design/adminmid.html' %}
+	  {% include 'design/msg.html' %}
+      {%if dl == "kn" %}
+       <h3 align="left">ಸೇವಾ ಮಾಸ್ಟರ್</h3>
+<form  id="savaregister" method="post" autocomplete="off" >
+   <table style="width:60%;" align="center" >    
+        <tr>
+            <td>
+              <font color="red">*</font><label for="sevaname"><b>ಇಂಗ್ಲಿಷ್‌ನಲ್ಲಿ ಸೇವಾ ಹೆಸರು</label>
+                <input autofocus="on" type="text" name="sevaname_en" id="sevaname_en"   placeholder="ಇಂಗ್ಲಿಷ್‌ನಲ್ಲಿ ಸೇವಾ ಹೆಸರು" required class="form-control"  >
+            </td>
+            </tr>
+            <tr>
+            <td>
+              <font color="red">*</font><label for="sevaname_en"><b>ಕನ್ನಡದಲ್ಲಿ ಸೇವಾ ಹೆಸರು</label>
+                <input type="text" name="sevaname_kn" id="sevaname_kn"  placeholder="ಕನ್ನಡದಲ್ಲಿ ಸೇವಾ ಹೆಸರು" required class="form-control"  >
+            </td>
+        </tr>
+        <td>
+             <font color="red">*</font><label for="sevaamt"><b>ಮೊತ್ತ</label>
+            <input type="number" name="amount" id="amount" placeholder="ಮೊತ್ತವನ್ನು ನಮೂದಿಸಿ" required=""  data-parsley-error-message="Valid input required." data-parsley-trigger="keyup" class="form-control" value="" autocomplete="off" fdprocessedid="4d21a">
+        </td>
+     </tr>
+    <tr>
+    	<td align="center"><br/>
+            <input type="submit" id="submit" name="submit" value="Save" class="btn btn-success" data-parsley-error-message="Valid input required." placeholder="" autocomplete="off" fdprocessedid="ch7q2d">
+            <input type="reset" name="btnreset" value="Cancel" class="btn btn-warning">
+        </td>
+    </tr>
+         {% csrf_token %}
+    
+</table></form>
+
+
+{%else%}
+
+
+<h3 align="left">Seva Master</h3>
+<form  id="savaregister" method="post" autocomplete="off" >
+   <table style="width:60%;" align="center" >    
+        <tr>
+            <td>
+              <font color="red">*</font><label for="sevaname"><b>Seva Name in English</label>
+                <input autofocus="on" type="text" name="sevaname_en" id="sevaname_en"   placeholder="Seva Name in English" required class="form-control"  >
+            </td>
+            </tr>
+            <tr>
+            <td>
+              <font color="red">*</font><label for="sevaname_en"><b>Seva Name In Kannada</label>
+                <input type="text" name="sevaname_kn" id="sevaname_kn"  placeholder="Seva Name In Kannada" required class="form-control"  >
+            </td>
+        </tr>
+        <td>
+             <font color="red">*</font><label for="sevaamt"><b>Amount</label>
+            <input type="number" name="amount" id="amount" placeholder="Enter Amount" required=""  data-parsley-error-message="Valid input required." data-parsley-trigger="keyup" class="form-control" value="" autocomplete="off" fdprocessedid="4d21a">
+        </td>
+     </tr>
+    <tr>
+        <td align="center"><br/>
+            <input type="submit" id="submit" name="submit" value="Save" class="btn btn-success" data-parsley-error-message="Valid input required." placeholder="" autocomplete="off" fdprocessedid="ch7q2d">
+            <input type="reset" name="btnreset" value="Cancel" class="btn btn-warning">
+        </td>
+    </tr>
+         {% csrf_token %}
+    
+</table></form>
+{%endif%}
+    {% include 'design/last.html' %}
+
+</body>
+</html>

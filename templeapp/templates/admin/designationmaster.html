@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Designation Master </title>
+	        {% include 'design/head.html' %}
+</head>
+
+<body>
+	 {% include 'design/adminmid.html' %}
+	  {% include 'design/msg.html' %}
+       <h3 align="left">Designation Master</h3>
+<form  id="donationmaster" method="post" autocomplete="off" >
+   <table style="width:60%;" align="center" >    
+        <tr>
+            <td>
+              <font color="red">*</font><label for="designationname"><b>Designation</label>
+                <select name="designationname" id="designationname"  required class="form-select select2-hidden-accessible" data-select2-id="AYear"  aria-hidden="true">
+                <option value="">Select Designation</option>
+                <option value="1">Administrator</option>
+                <option value="2">Operator</option>
+            </select>
+                        </td>
+        </tr>
+    <tr>
+    	<td align="center"><br/>
+            <input type="submit" id="submit" name="submit" value="Add Type" class="btn btn-success" data-parsley-error-message="Valid input required." placeholder="" autocomplete="off" fdprocessedid="ch7q2d">
+            <input type="reset" name="btnreset" value="Cancel" class="btn btn-warning">
+        </td>
+    </tr>
+         {% csrf_token %}
+    
+</table></form>
+    {% include 'design/last.html' %}
+</body>
+</html>

@@ -1,0 +1,29 @@
+ <style>
+      #example {
+        top: 50%;
+        left: 50%;
+        height: 30px;
+        transform: translate(-50%, -50%);
+        border: 1px solid #666;
+        border-radius: 10px;
+        background-color: white;
+        position: fixed;
+      }
+    </style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    setInterval(function(){
+      $('#example').fadeOut();
+    },3000);
+
+  });
+</script>
+<center>
+{%if msg %}
+<div id="example" style="text-align: left;display: inline-block;">
+  <b>&emsp;{{msg}}&emsp;</b>
+</div>
+{% endif %}
+</center>

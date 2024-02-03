@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% include "design/head.html" %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <title>Payment Search Date Wise</title>
+
+</head>
+<body>
+  {% include "design/operatormid.html" %} 
+   {%if dl == "kn" %}
+   <h3>ವೆಚ್ಚದ ವರದಿ</h3>
+   {%else%}
+<h3>Expense Report</h3>
+{%endif%} 
+  <form autocomplete="off" name="frmfeedetails" method="POST">
+    <table align="center">
+      <tr>
+        <td>
+          <label><b><font color="red">*</font> From Date</b></label>
+          <input type="date" name="fromdate" autofocus="on" required class="form-control">      
+        </td>
+        <td>
+          <label><b><font color="red">*</font>To Date</b></label>
+          <input type="date" name="todate" required class="form-control">
+        </td>
+        <td><br/>
+          <input type="submit" name="btnsubmit" class="btn btn-info" value="Get Data"> 
+        </td>
+      </tr>
+    </table>
+    {% csrf_token %}
+  </form>
+  {% if expensedata %}
+  <h3></h3>
+  {%if dl == "kn" %}
+   <div id="printableArea" >
+        <table width="100%;" border="1">
+           <tr>
+            <td><b>ವೆಚ್ಚ ಐಡಿ</b></td>
+            <td><b>ವೆಚ್ಚದ ಹೆಸರು</td>
+            <td><b>ಯಾರಿಗೆ ಪಾವತಿಸಿದೆ</b></td>
+            <td><b>ಪಾವತಿ ದಿನಾಂಕ</b></td>
+            <td><b>ಪಾವತಿ ಮೋಡ್</b></td>
+            <td><b> ವಹಿವಾಟಿನ ವಿವರಗಳು</b></td>
+            <td><b>ಪಾವತಿಸಿದ ಮೊತ್ತ</b></td>
+           
+          </tr>
+           {% for ed in expensedata %}
+          <tr>
+            <td>{{ed.id}}</td>
+            <td>{{ed.expenseheadid.expensehead_kn}}</td>
+            <td>{{ed.paidto_kn}}</td>
+            <td>{{ed.paymentdatedateindian}}</td>
+            <td>{{ed.paymentmode}}</td>
+            <td>{{ed.paymentdetails}}</td>
+            <td>₹{{ed.amountpaid}}.00</td>
+            <td>
+            <form method="post" name="txtsearch">
+              <input type="hidden" name="did" value="{{dd.id}}">
+              <input type="submit" name="btnsubmit" value="Cancel" class="btn btn-danger">
+        {% csrf_token %}
+            </form>
+          </td>
+            {% endfor %}
+          </tr>
+          <tr>
+            <td><b>Total Expense Amount :</b></td>
+            <td><b>₹ {{expensesum}}</b></td>
+          </tr>
+        </table>
+
+{%else%}
+
+
+         <table width="100%;" border="1">
+           <tr>
+            <td><b>Expense Id</b></td>
+            <td><b>Expense Name</td>
+            <td><b>Paid To</b></td>
+            <td><b>Payment Date</b></td>
+            <td><b>Amount Paid</b></td>
+            <td><b>Payment Mode</b></td>
+            <td><b> Transaction Details</b></td>
+           
+          </tr>
+           {% for ed in expensedata %}
+          <tr>
+            <td>{{ed.id}}</td>
+            <td>{{ed.expenseheadid.expensehead}}</td>
+            <td>{{ed.paidto}}</td>
+            <td>{{ed.paymentdatedateindian}}</td>
+            <td>₹{{ed.amountpaid}}.00</td>
+            <td>{{ed.paymentmode}}</td>
+            <td>{{ed.paymentdetails}}</td>
+            <td>
+            <form method="post" name="txtsearch">
+              <input type="hidden" name="did" value="{{dd.id}}">
+              <input type="submit" name="btnsubmit" value="Cancel" class="btn btn-danger">
+        {% csrf_token %}
+            </form>
+          </td>
+            {% endfor %}
+          </tr>
+          {% endif %}
+        </table>
+  </div>
+
+      <center>
+        <br>
+        <input type="button" name="btn" class="btn btn-warning" value="Print" onclick="printDiv('print')" >
+        <br>
+      </center>
+  {% endif %}
+
+     
+  {% include 'design/last.html' %}
+</body>
+</html>

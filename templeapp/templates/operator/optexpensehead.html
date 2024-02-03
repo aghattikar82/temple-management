@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "design/head.html" %}
+    <title>Expense Head</title>
+</head>
+<body>
+    {% include "design/operatormid.html" %}
+    {%if dl == "kn" %}
+    <h3>ವೆಚ್ಚದ ಹೆಡ್</h3>
+    <form name="frmexpensehead" method="post" autocomplete="off">
+            <div class="container-fluid mt-3" align="center" >
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-6" style="text-align:left;">
+                            <label for="expensehead"><font color="red" >*</font><b>ವೆಚ್ಚದ ಹೆಸರು</label>
+                            <select name="expensehead" required class="form-select" autofocus="on">
+                                <option  value="">ವೆಚ್ಚದ ಹೆಸರನ್ನು ಆಯ್ಕೆಮಾಡಿ</option>
+                                {% for h in heads  %}       
+                                        <option value="{{h.id}}">{{h.expensehead_kn}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-6" style="text-align:left;">
+                            <label for="paidto"><font color="red" >*</font>ಯಾರಿಗೆ ಪಾವತಿಸಲಾಗಿದೆ</label>
+                                <input type="text" name="paidto" class="form-control" autofocus="on" required placeholder="Enter In English ">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-6" style="text-align:left;">
+                            <label for="paymentdate"><font color="red" >*</font>ಪಾವತಿ ದಿನಾಂಕ</label>
+                                <input type="date" name="paymentdate" class="form-control" autofocus="on" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-6" style="text-align:left;">
+                            <label for="amountpaid"><font color="red" >*</font>ಪಾವತಿಸಿದ ಮೊತ್ತ</label>
+                                <input type="number" name="amountpaid" class="form-control" autofocus="on" placeholder="ಪಾವತಿಸಿದ ಮೊತ್ತ" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-6" style="text-align:left;">
+                            <label for="paymentmode"><font color="red" >*</font>ಪಾವತಿ ರೀತಿ</label>
+                            <select name="paymentmode" required class="form-select">
+                                <option  value="">ಪಾವತಿ ಮೋಡ್ ಆಯ್ಕೆಮಾಡಿ</option>
+                                <option value="CASH">ನಗದು</option>  
+                                <option value="BANK">ಬ್ಯಾಂಕ್</option>   
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-6" style="text-align:left;">
+                            <label for="paymentdetails"><font color="red" >*</font>ಪಾವತಿ ವಿವರಗಳು</label>
+                            <textarea class="form-control" name="paymentdetails" placeholder="ಪಾವತಿ ವಿವರಗಳು"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p></p>
+            <center>
+                <div class="col-lg-6">
+                    <input type="submit" name="txtexpense" value="Add Expense" class="btn btn-success">
+                    <input type="reset" name="Cancel" value="Cancel" class="btn btn-warning">
+                    
+                </div>
+            </center>
+
+        {% csrf_token %}
+    </form>
+    {%else%}
+        <h3>Expense Head</h3>
+    <form name="frmexpensehead" method="post" autocomplete="off">
+            <div class="container-fluid mt-3" align="center" >
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-6" style="text-align:left;">
+                            <label for="expensehead"><font color="red" >*</font><b>Expense Heads</label>
+                            <select name="expensehead" required class="form-select" autofocus="on">
+                                <option  value="">Select Expense Head</option>
+                                {% for h in heads  %}       
+                                        <option value="{{h.id}}">{{h.expensehead}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-6" style="text-align:left;">
+                            <label for="paidto"><font color="red" >*</font>Paid To</label>
+                                <input type="text" name="paidto" class="form-control" autofocus="on" required placeholder="Paid To ">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-6" style="text-align:left;">
+                            <label for="paymentdate"><font color="red" >*</font>Payment Date</label>
+                                <input type="date" name="paymentdate" class="form-control" autofocus="on" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-6" style="text-align:left;">
+                            <label for="amountpaid"><font color="red" >*</font>Amount Paid</label>
+                                <input type="number" name="amountpaid" class="form-control" autofocus="on" placeholder="Amount Paid" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-6" style="text-align:left;">
+                            <label for="paymentmode"><font color="red" >*</font>Payment Mode</label>
+                            <select name="paymentmode" required class="form-select">
+                                <option  value="">Select Payment Mode</option>
+                                <option value="CASH">CASH</option>
+                                <option value="NEFT">NEFT</option>   
+                                <option value="RTGS">RTGS</option>   
+                                <option value="UPI">UPI</option>   
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-6" style="text-align:left;">
+                            <label for="paymentdetails"><font color="red" >*</font>Payment Details</label>
+                            <textarea class="form-control" name="paymentdetails" placeholder="Payment Details"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p></p>
+            <center>
+                <div class="col-lg-6">
+                    <input type="submit" name="txtexpense" value="Add Expense" class="btn btn-success">
+                    <input type="reset" name="Cancel" value="Cancel" class="btn btn-warning">
+                    
+                </div>
+            </center>
+
+        {% csrf_token %}
+    </form>
+     {%endif%} 
+</div>
+    {% include "design/last.html" %}
+</body>
+</html>

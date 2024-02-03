@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% include "design/head.html" %}
+  <title>User Master Profile</title>
+</head>
+<body>
+  {% include 'design/adminmid.html' %}
+  	  {% include 'design/msg.html' %}
+  	   {%if dl == "kn" %}
+        <h2>ಬಳಕೆದಾರರ ಮಾಸ್ಟರ್ ಪ್ರೊಫೈಲ್</h2>
+       {%else%}
+        <h2>User Master Profile</h2>
+       {%endif%}
+  {%if dl == "kn" %}
+<form autocomplete="off" name="Search" method="POST"  >
+
+ <div class="container-fluid mt-3" >
+  <div class="input-group mb-3" align="center">	
+  	 <span class="col-1" >
+       
+    </span>
+		<span class="col-4">
+			<select autofocus="on" name="ddlfield" required class="form-select">
+				<option value="">ಮೂಲಕ ಹುಡುಕಿ </option>
+				<option value="name">ಹೆಸರು</option>
+				<option value="mobilenumber">ಮೊಬೈಲ್ ನಂಬರ</option>
+			</select>
+		</span>
+		<span class="col-5">
+			<input type="text" name="txtsearch" placeholder="ಹೆಸರು/ಮೊಬೈಲ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ" required class="form-control">
+		</span><input type="submit" name="btnsubmit" class="btn btn-info" value="Get Data">	
+	</div>
+</div>
+
+{% csrf_token %}
+</form>
+{%else%}
+<form autocomplete="off" name="Search" method="POST"  >
+
+ <div class="container-fluid mt-3" >
+  <div class="input-group mb-3" align="center">	
+  	 <span class="col-1" >
+       
+    </span>
+		<span class="col-4">
+			<select autofocus="on" name="ddlfield" required class="form-select">
+				<option value="">Search By </option>
+				<option value="name">Name</option>
+				<option value="mobilenumber">Mobile Number</option>
+			</select>
+		</span>
+		<span class="col-5">
+			<input type="text" name="txtsearch" placeholder="Enter Name/Mobile Number" required class="form-control">
+		</span><input type="submit" name="btnsubmit" class="btn btn-info" value="Get Data">	
+	</div>
+</div>
+
+{% csrf_token %}
+</form>
+{%endif%}
+</body>
+
+{% if Userdata%}
+{%if dl == "kn" %}
+
+ <div class="container mt-3"  >
+         <table align="center" class="table table-bordered">
+         	<tr >
+         		<td ><b>ಪೂರ್ಣ ಹೆಸರು</b>  </td>
+         		<td ><b>ಮೊಬೈಲ್ ನಂಬರ</b>  </td>
+         		<td ><b>ಹುದ್ದೆ </b>  </td>
+         		<td ><b>ವಿಳಾಸ</b>  </td>
+         	</tr>
+         	{% for d in Userdata %}
+         	<tr>
+						<td>{{d.fullname}}</td>
+						<td>{{d.mobilenumber}}</td>
+						<td>{{d.designation}}</td>
+						<td>{{d.address}}</td>
+						<td>
+						<form method="post" name="txtsearch">
+						<center>
+		          <input type="hidden" name="uid" value="{{d.id}}">
+		          <input type="submit" name="btnsubmit" value="Disabled" class="btn btn-danger">
+		    		{% csrf_token %}
+		        </form>
+		       
+		    </center>  	
+						</td>
+		         {% endfor %}
+         	</tr>
+         	<tr>
+         </table>
+
+
+
+{%else%}
+         <table align="center" class="table table-bordered">
+         	<tr >
+         		<td ><b>Full Name:</b>  </td>
+         		<td ><b>Mobile Number:</b>  </td>
+         		<td ><b>Designation :</b>  </td>
+         		<td ><b>Address:</b>  </td>
+         	</tr>
+         	{% for d in Userdata %}
+         	<tr>
+						<td>{{d.fullname}}</td>
+						<td>{{d.mobilenumber}}</td>
+						<td>{{d.designation}}</td>
+						<td>{{d.address}}</td>
+						<td>
+						<form method="post" name="txtsearch">
+						<center>
+		          <input type="hidden" name="uid" value="{{d.id}}">
+		          <input type="submit" name="btnsubmit" value="Disabled" class="btn btn-danger">
+		    		{% csrf_token %}
+		        </form>
+		       
+		    </center>  	
+						</td>
+		         {% endfor %}
+         	</tr>
+         	<tr>
+         </table>
+{%endif%}         
+{%endif%}
+
+         	</tr>
+ 
+        </div>
+
+  </form>
+  {% include "design/last.html" %}
+</body>
+</html>

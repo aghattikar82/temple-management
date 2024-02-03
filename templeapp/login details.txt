@@ -1,0 +1,19 @@
+Login Details:
+
+Admin:Kannada
+UserName:9876543210
+Password:9876543210
+
+Operator:Kannada
+UserName:9876543211
+Password:9876543211
+
+Operator:English
+UserName:8884755720
+Password:8884755720
+
+SuperUser:
+UserName:anup
+Password:anup
+
+

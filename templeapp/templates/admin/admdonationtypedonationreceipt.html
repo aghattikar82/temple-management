@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Receipt</title>
+{% load humanize %} 
+	{% load static %}
+
+
+	{% include 'design/head.html' %}
+</head>
+<body>
+	  {% include 'design/adminmid.html' %}
+	  {%if dl == "kn" %}
+	<h3>ದೇಣಿಗೆ ವರದಿ</h3>
+<div id="print">
+	<table  width="100%" height="300px;" align="center" border="3">
+		<tr>
+			<td>
+			
+				<b>ಟ್ರಸ್ಟ್ ನಕಲು</b>
+				<center>
+					<font  color="maroon"><b><h2><font style="font-height:">ಶ್ರೀ ವೆಂಕಟೇಶ್ವರ ದೇವಸ್ಥಾನ ಟ್ರಸ್ಟ್  (ರಿ.)</font> </h2></b></font>
+				<font  color="maroon">	<b>ನ್ಯೂ ರಾಘವೇಂದ್ರ ಕಾಲೋನಿ, ಬ್ರಹ್ಮಾಪುರ, ಕಲಬುರಗಿ</b></font>
+				</center>
+			</td>
+		</tr>
+		<tr>
+			<td>
+					<center><b><u>ದೇಣಿಗೆ ರಸೀದಿ</u></b></center>					
+			{%if donationdata %}
+			{%for dd in donationdata %}
+										<table width="100%;" border="1">
+						<tr>
+							<td align="left">
+								<b>ರಸೀದಿ ಸಂ :</b>{{dd.id}}
+							</td>
+							<td align="right">
+								<b>ದಿನಾಂಕ :</b>{{dd.createdonindiandate}}
+							</td>
+						</tr>
+					</table>
+					{%endfor%}
+					{%endif%}
+
+				
+					
+					<table width="100%;" border="1">
+						{%for dd in donationdata %}
+						<tr>
+							<td align="">
+								<b>ಭಕ್ತನ ಹೆಸರು :</b> &nbsp;{{dd.donorname_kn}}
+							</td>
+						</tr>
+						<tr>
+							<td align="">
+								<b>ಇನ್ ದಿ ಮೆಮೊರಿ ಆಫ್ :</b>&nbsp;{{dd.memoryof_kn}}
+									</td>
+						</tr>
+								<tr>
+							<td align="">
+								<b>ಭಕ್ತರ ಮೊಬೈಲ್ ನಂ :</b>&nbsp;{{dd.donormobilenumber}}
+									</td>
+						</tr>
+								<tr>
+							<td align="">
+								<b>ದೇಣಿಗೆ ನೀಡಿದ ದಿನಾಂಕ :</b>&nbsp;{{dd.donationindiandate}}
+									</td>
+						</tr>
+						{%endfor%}
+					</table>
+					
+					<table width="100%;" height="60px;"  border="1">
+
+						<tr>
+							<td align="right" width="40%">ಖಜಾoಚಿ/ವ್ಯವಸ್ಥಾಪಕರು</td>
+						</tr>
+						
+					</table>
+			</td>
+		</tr>
+	</table>
+
+<table>
+	<tr>
+<td></td>
+	</tr>
+</table>
+<table>
+	<tr>
+<td></td>
+	</tr>
+</table>
+
+	<table  width="100%" height="300px;" align="center" border="3">
+		<tr>
+			<td>
+		
+				<b>ಭಕ್ತ ನಕಲು</b>
+				<center>
+					<font  color="maroon"><b><h2><font style="font-height:">ಶ್ರೀ ವೆಂಕಟೇಶ್ವರ ದೇವಸ್ಥಾನ ಟ್ರಸ್ಟ್  (ರಿ.)</font> </h2></b></font>
+				<font  color="maroon">	<b>ನ್ಯೂ ರಾಘವೇಂದ್ರ ಕಾಲೋನಿ, ಬ್ರಹ್ಮಾಪುರ, ಕಲಬುರಗಿ</b></font>
+				</center>
+					
+			</td>
+		</tr>
+		<tr>
+			<td>
+					<center><b><u>ದೇಣಿಗೆ ರಸೀದಿ</u></b></center>					
+			{%if donationdata %}
+			{%for dd in donationdata %}
+										<table width="100%;" border="1">
+						<tr>
+							<td align="left">
+								<b>ರಸೀದಿ ಸಂ :</b>{{dd.id}}
+							</td>
+							<td align="right">
+								<b>ದಿನಾಂಕ :</b>{{dd.createdonindiandate}}
+							</td>
+						</tr>
+					</table>
+					{%endfor%}
+					{%endif%}
+
+					
+					<table width="100%;" border="1">
+						{%for dd in donationdata %}
+						<tr>
+							<td align="">
+								<b>ಭಕ್ತನ ಹೆಸರು :</b> &nbsp;{{dd.donorname_kn}}
+							</td>
+						</tr>
+						<tr>
+							<td align="">
+								<b>ಇನ್ ದಿ ಮೆಮೊರಿ ಆಫ್ :</b>&nbsp;{{dd.memoryof_kn}}
+									</td>
+						</tr>
+								<tr>
+							<td align="">
+								<b>ಭಕ್ತರ ಮೊಬೈಲ್ ನಂ :</b>&nbsp;{{dd.donormobilenumber}}
+									</td>
+						</tr>
+								<tr>
+							<td align="">
+								<b>ದೇಣಿಗೆ ನೀಡಿದ ದಿನಾಂಕ :</b>&nbsp;{{dd.donationindiandate}}
+									</td>
+						</tr>
+						{%endfor%}
+					</table>
+					
+					<table width="100%;" height="60px;"  border="1">
+
+						<tr>
+							<td align="right" width="40%">ಖಜಾoಚಿ/ವ್ಯವಸ್ಥಾಪಕರು</td>
+						</tr>
+						
+					</table>
+			</td>
+		</tr>
+	</table>
+
+{%else%}
+<h2>Donation Receipt</h2>	
+	<table  width="60%" height="300px;" align="center" border="3">
+		<tr>
+			<td>
+				<b>Trust Copy</b>
+				<center>
+					<font  color="maroon"><b><h2><font style="font-height:">
+Sri Venkateswara Temple Trust (R)</font> </h2></b></font>
+				<font  color="maroon">	<b>New Raghavendra Colony, Brahmapura, Kalaburagi</b></font>
+				</center>
+			</td>
+		</tr>
+		<tr>
+			<td>
+					<center><b><u>Donation Receipt</u></b></center>					
+			{%if donationdata %}
+			{%for dd in donationdata %}
+					<table width="100%;" border="1">
+						<tr>
+							<td align="left">
+								<b>Receipt No :</b>{{dd.id}}
+							</td>
+							<td align="right">
+								<b>Date :</b>{{dd.createdonindiandate}}
+							</td>
+						</tr>
+					</table>
+					{%endfor%}
+					{%endif%}
+
+					{%for i in dispcount%}
+					<tr><td colspan="3"><br/></td></tr>
+					{%endfor%}
+					
+					
+					<table width="100%;" border="1">
+						{%for dd in donationdata %}
+						<tr>
+							<td align="">
+								<b>Devotte Name :</b> &nbsp;{{dd.donorname}}
+							</td>
+						</tr>
+						<tr>
+							<td align="">
+								<b>In The Memory Of :</b>&nbsp;{{dd.memoryof}}
+									</td>
+						</tr>
+								<tr>
+							<td align="">
+								<b>Devotee Mobile No :</b>&nbsp;{{dd.donormobilenumber}}
+									</td>
+						</tr>
+								<tr>
+							<td align="">
+								<b>Donated Date :</b>&nbsp;{{dd.donationindiandate}}
+									</td>
+						</tr>
+								<tr>
+							<td align="">
+								<b>Note :</b>&nbsp;{{dd.note}}
+							</td>
+							
+						</tr>
+						{%endfor%}
+					</table>
+					
+					<table width="100%;" height="60px;"  border="1">
+
+						<tr>
+							<td align="right" width="40%">Treasurer/Manager</td>
+						</tr>
+						
+					</table>
+			</td>
+		</tr>
+	</table>
+
+<table>
+	<tr>
+<td></td>
+	</tr>
+</table>
+<table>
+	<tr>
+<td></td>
+	</tr>
+</table>
+
+	<table  width="60%" height="300px;" align="center" border="3">
+		<tr>
+			<td>
+		
+				<b>Devotee Copy</b>
+				<center>
+					<font  color="maroon"><b><h2><font style="font-height:">
+Sri Venkateswara Temple Trust (R)</font> </h2></b></font>
+				<font  color="maroon">	<b>New Raghavendra Colony, Brahmapura, Kalaburagi</b></font>
+				</center>
+					
+			</td>
+		</tr>
+		<tr>
+			<td>
+					<center><b><u>Donation Receipt</u></b></center>					
+			{%if donationdata %}
+			{%for dd in donationdata %}
+					<table width="100%;" border="1">
+						<tr>
+							<td align="left">
+								<b>Receipt No :</b>{{dd.id}}
+							</td>
+							<td align="right">
+								<b>Date :</b>{{dd.createdonindiandate}}
+							</td>
+						</tr>
+					</table>
+					{%endfor%}
+					{%endif%}
+
+					{%for i in dispcount%}
+					<tr><td colspan="3"><br/></td></tr>
+					{%endfor%}
+					
+					
+					<table width="100%;" border="1">
+						{%for dd in donationdata %}
+						<tr>
+							<td align="">
+								<b>Devotte Name :</b> &nbsp;{{dd.donorname}}
+							</td>
+						</tr>
+						<tr>
+							<td align="">
+								<b>In The Memory Of :</b>&nbsp;{{dd.memoryof}}
+									</td>
+						</tr>
+								<tr>
+							<td align="">
+								<b>Devotee Mobile No :</b>&nbsp;{{dd.donormobilenumber}}
+									</td>
+						</tr>
+								<tr>
+							<td align="">
+								<b>Donated Date :</b>&nbsp;{{dd.donationindiandate}}
+									</td>
+								<tr>
+							<td align="">
+								<b>Note :</b>&nbsp;{{dd.note}}
+							</td>
+							
+						</tr>
+						{%endfor%}
+					</table>
+					
+					<table width="100%;" height="60px;"  border="1">
+
+						<tr>
+							<td align="right" width="40%">Treasurer/Manager</td>
+						</tr>
+						
+					</table>
+			</td>
+		</tr>
+	</table>
+{%endif%}
+	</div>
+      <center>
+        <br>
+        <input type="button" name="btn" class="btn btn-warning" value="Print" onclick="printDiv('print')" >
+        <br>
+      </center>
+
+  {% include 'design/last.html' %}
+</body>
+</html>
